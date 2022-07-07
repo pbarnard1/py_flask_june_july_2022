@@ -13,7 +13,6 @@ class Animal:
         self.weight = data["weight"]
         self.color = data["color"]
         self.height = data["height"]
-        self.birth_date = data["birth_date"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
         self.zoo = None # NEW: Linking one Zoo to this Animal
