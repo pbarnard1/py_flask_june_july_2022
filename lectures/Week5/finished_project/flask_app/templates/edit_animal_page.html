@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Edit an Animal</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10">
+                <h1>Edit {{ this_animal.name }} the {{ this_animal.species }}</h1>
+            </div>
+            <div class="col">
+                <a href="/animals">All animals</a>
+            </div>
+        </div>
+        <form action="/animals/{{ this_animal.id }}/edit_animal_in_db" method="POST">
+            <div class="row">
+                <label>Name:</label>
+                <input type="text" name="name" value="{{ this_animal.name }}">
+            </div>
+            <div class="row">
+                <label>Species:</label>
+                <input type="text" name="species" value="{{ this_animal.species }}">
+            </div>
+            <div class="row">
+                <label>Weight (kg):</label>
+                <input type="number" name="weight" value="{{ this_animal.weight }}">
+            </div>
+            <div class="row">
+                <label>Color:</label>
+                <input type="text" name="color" value="{{ this_animal.color }}">
+            </div>
+            <div class="row">
+                <label>Height (cm):</label>
+                <input type="number" name="height" value="{{ this_animal.height }}">
+            </div>
+            <div class="row">
+                <label>Zoo:</label>
+                <select name="zoo_id"> <!-- Name of foreign key -->
+                    {% for this_zoo in all_zoos %}
+                        {% if this_zoo.id == this_animal.zoo.id %} {# MUST be zoo.id, NOT zoo_id #}
+                        <option value="{{ this_zoo.id }}" selected>{{ this_zoo.name }}</option>
+                        {% else %}
+                        <option value="{{ this_zoo.id }}">{{ this_zoo.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Edit animal">
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

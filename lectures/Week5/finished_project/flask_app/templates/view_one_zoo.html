@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>View a Zoo</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10">
+                <h3>Welcome to the Zoos and Animals site!</h3>
+            </div>
+            <div class="col">
+                <a href="/zoos">All zoos</a>
+            </div>
+        </div>
+        <h3>About zoo #{{ this_zoo.id }}: {{ this_zoo.name }}</h3>
+        <p>City: {{ this_zoo.city }}</p>
+        <p>Size: {{ this_zoo.size }} acres</p>
+        <p>Visitor capacity: {{ this_zoo.visitor_capacity }}</p>
+        <p>Date zoo opened: {{ this_zoo.opening_date.strftime("%B %d, %Y") }}</p>
+        <p>Animals found here:</p>
+        <ul>
+            {% if this_zoo.animals|length == 0 %}
+                <li>No animals found in this zoo</li>
+            {% else %}
+                {% for this_animal in this_zoo.animals %}
+                    <li>{{ this_animal.name }} the {{ this_animal.species }}</li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
