@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>My amazing site</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Welcome to my amazing site!</h1>
+        <div class="row">
+            
+            <div class="col">
+                <h1>Register</h1>
+                <form action="/register" method="POST">
+                    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                        {% if messages %}                            <!-- check if there are any messages -->
+                            {% for message in messages %}            <!-- loop through the messages -->
+                                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">First name:</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="first_name">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">Last name:</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="last_name">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">Email:</label>
+                        <div class="col-8">
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">Password:</label>
+                        <div class="col-8">
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">Confirm password:</label>
+                        <div class="col-8">
+                            <input type="password" class="form-control" name="confirm_password">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="offset-4">
+                            <button class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <h1>Log in</h1>
+                <form>
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">Email:</label>
+                        <div class="col-8">
+                            <input type="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-4 col-form-label">Password:</label>
+                        <div class="col-8">
+                            <input type="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="offset-4">
+                            <button class="btn btn-primary">Log in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
