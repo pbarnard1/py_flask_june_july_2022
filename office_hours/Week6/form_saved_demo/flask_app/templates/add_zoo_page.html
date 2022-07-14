@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Add a New Zoo</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10">
+                <h3>Welcome to the Zoos and Animals site!</h3>
+            </div>
+            <div class="col">
+                <a href="/zoos">All zoos</a>
+            </div>
+        </div>
+        <div class="row">
+            <h1>Add a Zoo</h1>
+        </div>
+        <form action="/zoos/add_zoo_to_db" method="POST">
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="row">
+                <label>Name:</label>
+                {% if "name" in session %}
+                <input type="text" name="name" value="{{ session['name']}}">
+                {% else %}
+                <input type="text" name="name">
+                {% endif %}
+            </div>
+            <div class="row">
+                <label>City:</label>
+                {% if "city" in session %}
+                <input type="text" name="city" value="{{ session['city']}}">
+                {% else %}
+                <input type="text" name="city">
+                {% endif %}
+            </div>
+            <div class="row">
+                <label>Size (acres):</label>
+                {% if "size" in session %}
+                <input type="number" name="size" value="{{ session['size']}}">
+                {% else %}
+                <input type="number" name="size">
+                {% endif %}
+            </div>
+            <div class="row">
+                <label>Visitor capacity:</label>
+                {% if "visitor_capacity" in session %}
+                <input type="number" name="visitor_capacity" value="{{ session['visitor_capacity']}}">
+                {% else %}
+                <input type="number" name="visitor_capacity">
+                {% endif %}
+            </div>
+            <div class="row">
+                <label>Opening date:</label>
+                {% if "opening_date" in session %}
+                <input type="date" name="opening_date" value="{{ session['opening_date']}}">
+                {% else %}
+                <input type="date" name="opening_date">
+                {% endif %}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Add zoo">
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
